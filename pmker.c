@@ -38,7 +38,17 @@ int main(){
     for (j=0; j<xres; j++){
       int n = j % 256;
       char c[20];
-      sprintf(c, "%d %d %d ", n, (n*n)%256, (n*n*n)%256);
+
+      if (j<(xres/2)){
+	if ((j%2 == 0)){
+	  sprintf(c, "%d %d %d ", n, (n*n)%256, (n*n*n)%256);
+	} else {
+	  sprintf(c, "%d %d %d ", n, n, n);	
+	}
+      } else {
+	sprintf(c, "%d %d %d ", n, (n*n)%256, (n*n*n)%256);
+      }
+      
       write(fd, c, strlen(c) * sizeof(char));
     }
   }
